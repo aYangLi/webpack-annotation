@@ -1,6 +1,6 @@
-require('./check-versions')()
+require('./check-versions')() // 判断各个包的版本和环境是否符合等，在控制台输出；
 
-var config = require('../config')
+var config = require('../config') // 配置文件
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }

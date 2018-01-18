@@ -1,14 +1,14 @@
-require('./check-versions')()
+require('./check-versions')() // 判断各个包的版本和环境是否符合等，在控制台输出；
 
 process.env.NODE_ENV = 'production'
 
-var ora = require('ora')
-var rm = require('rimraf')
-var path = require('path')
-var chalk = require('chalk')
+var ora = require('ora') // 主要用来实现node.js命令行环境的loading效果，和显示各种状态的图标等
+var rm = require('rimraf') // 以包的形式包装rm -rf命令，就是用来删除文件和文件夹的，不管文件夹是否为空，都可以删除。
+var path = require('path') // path模块对路径的操作
+var chalk = require('chalk') // 配置控制台输出颜色等；
 var webpack = require('webpack')
-var config = require('../config')
-var webpackConfig = require('./webpack.prod.conf')
+var config = require('../config') // 配置文件
+var webpackConfig = require('./webpack.prod.conf') // webpack 生产环境配置
 
 var spinner = ora('正在编译至生产环境...')
 spinner.start()
@@ -18,6 +18,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()
     if (err) throw err
+    // process.stdout属性返回一个对象，表示标准输出。该对象的write方法等同于console.log，可用在标准输出向用户显示内容。
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,
