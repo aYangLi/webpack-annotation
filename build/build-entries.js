@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs'); // 文件系统
 const utils = require('./utils');
 
 let buildEntries = {};
