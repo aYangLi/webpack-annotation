@@ -1,13 +1,13 @@
-var path = require('path')
-var utils = require('./utils')
+var path = require('path') // path模块对路径的操作
+var utils = require('./utils') // 封装的工具
 var webpack = require('webpack')
-var config = require('../config')
+var config = require('../config') // 配置文件
 var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-var glob = require('glob')
-var vConsolePlugin = require('vconsole-webpack-plugin');
+var baseWebpackConfig = require('./webpack.base.conf') // webpack基础配置
+var HtmlWebpackPlugin = require('html-webpack-plugin') // html插件，生成的文件插入到html中
+var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin') // 识别某些类型的webpack错误并清理
+var glob = require('glob') // glob是一个文件匹配包，就是用来根据指定样式或正则来匹配搜索文件的
+var vConsolePlugin = require('vconsole-webpack-plugin'); // vConsole 插件
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -21,6 +21,7 @@ let devConfig = merge(baseWebpackConfig, {
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-eval-source-map',
   plugins: [
+    // DefinePlugin 是webpack 的内置插件，该插件可以在打包时候替换制定的变量
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
